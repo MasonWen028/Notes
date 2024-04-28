@@ -4,7 +4,7 @@
 Install-Package AutoMapper
 
 #2 Create map
-
+```
 public AutomapperConfig() 
 {
 	public static MapperConfiguration RegisterMapper()
@@ -16,7 +16,7 @@ public AutomapperConfig()
 		return cfg;
 	}
 }
-
+```
 #3 Use maps in program.cs
 
 IMapper mapper = AutomapperConfig.RegisterMapper().CreateMapper();
