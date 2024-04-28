@@ -1,4 +1,3 @@
-# Notes
 #1 Install from nuget
 ```c#
 Install-Package AutoMapper
@@ -29,7 +28,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 sample class: CouponAPIController
 ```c#
-private IMapper _mapper;
+private readobly IMapper _mapper;
 
 public CouponAPIController(IMapper mapper)
 {
