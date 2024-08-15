@@ -15,7 +15,7 @@ int b = n;
 a = a ^ b = m ^ n;
 b = a ^ b = m ^ n ^ n = m ^ 0 = m;
 a = a ^ b = m ^ n ^ m = 0 ^ n = n;
-tips: This method won't work if a and b are defined as elements of an array, such as arr[i]. In this case, they refer to the same memory location, meaning you can't swap the values of arr[i] with itself.
+tips: This method won't work if a and b are defined as same element of an array, such as arr[i]. In this case, they refer to the same memory location, meaning you can't swap the values of arr[i] with itself.
 
 2. only 1 element repeats an odd number of times, all others apears an even number of times.
 public static int Xor1(int[] nums)
@@ -190,22 +190,23 @@ public static int ExistingNumIndex(int[] sortedArr, int targetNum)
 	int L = 0;
 	int R = sortedArr.length - 1;
 
-	while(L < R)
+	while(L <= R)
 	{
-		mid = l + (R - L) >> 1;
+		mid = L + ((R - L) >> 1);
 		if (targetNum == sortedArr[mid])
 		{
 			return mid;
 		}
 		else if (targetNum < sortedArr[mid])
 		{
-			R = mid + 1;	
+			R = mid - 1;	
 		} 
 		else
 		{
 			L = mid + 1;
 		}
 	}
+	return -1;
 }
 
 // comparator for existingNumIndex
@@ -325,5 +326,115 @@ public static int LocalMinimum(int[] unSortedArr)
 	return -1;
 }
 
+```
+
+
+``` Linked List
+1. Reversing a linked list with one or two nodes
+
+1.a. single node
+
+public class SingleNode
+{
+	public int value;
+	public SingleNode next;
+	public SingleNode(int v)
+	{
+		value = v;
+	}
+}
+
+
+public static SingleNode ReversingSingleNode(SingleNode node)
+{
+	SingleNode pre = null;
+	SingleNode next = null;
+	while(SingleNode!=null)
+	{
+		next = node.next;
+		node.next = pre;
+		pre = node;
+		node = next;
+	}
+	return pre;
+}
+
+1.b. double node
+
+public class DoubleNode
+{
+	public int value;
+
+	public DoubleNode next;
+
+	public DoubleNode pre;
+
+	public DoubleNode(int v)
+	{
+		value = v;
+	}
+}
+
+public static DoubleNode ReversiongDoubleNode(DoubleNode node)
+{
+	DoubleNode pre = null;
+
+	DoubleNode next = null;
+	while(node != null)
+	{
+		next = node.next; // set the memory locatio of node.next to next
+		
+		node.next = pre; // modify node.next to pre
+		node.pre = next; // modify node.pre to next;
+						 // swap the memory location of next and pre
+		pre = node;      // set node to pre
+
+		node = node.next;// move to next node   
+	}
+	return pre;
+}
+
+2. giving a single node linked list, remove all nodes which value equals 3
+
+public class SingleNode
+{
+	public int value;
+	public SingleNode next;
+	public SingleNode(int v)
+	{
+		value = v;
+	}
+}
+
+public static SingleNode removeGavinNum(SingleNode node, int num)
+{
+	while(node != null)
+	{
+		if (node.value != num)
+		{
+			break;
+		}
+		node = node.next;
+	}
+
+
+
+	SingleNode cur = node;
+	SingleNode pre = node;
+
+	while(cur != null)
+	{
+		if (cur.value == num)
+		{
+			pre.next = cur.next;
+		}
+		else
+		{
+			pre = cur;
+		}
+		cur = cur.next;
+	}
+	return pre;
+}
 
 ```
